@@ -5,3 +5,6 @@
 `docker push kevinjscott/hwyd-docker
 
 `docker run -p 3000:3000 kevinjscott/hwyd-docker
+
+`docker exec -it kev /bin/sh
+

@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express! - via (actual) 3 local Build' });
+  res.render('index', { title: 'Express! - via (actual) 4 docker Build' });
 });
 
 module.exports = router;
