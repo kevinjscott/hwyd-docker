@@ -43,6 +43,13 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-console.log("howdy!!");
+var scheduler = require('./app/scheduler');
+scheduler.init();
+
+require('./app/doit');
 
 module.exports = app;
+
+
+
+
