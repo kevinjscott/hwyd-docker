@@ -1,0 +1,28 @@
+exports.data = [
+  {
+    id: 1,
+    poc: {
+      email: 'admin1@example.com',
+      slack: 'admin1',
+    }
+    name: 'School1',
+    hash: 'school1hash',
+    salt: 'somesalt',
+    branding: {
+      logourl: 'http://youradminpartners.com/bcompliant/css/img/generic_client_logo.png'
+    }
+  },
+  {
+    id: 2,
+    poc: {
+      email: 'admin2@example.com',
+      slack: 'admin2',
+    }
+    name: 'School2',
+    hash: 'school2hash',
+    salt: 'somesalt',
+    branding: {
+      logourl: 'http://youradminpartners.com/bcompliant/css/img/generic_client_logo.png'
+    }
+  }
+]

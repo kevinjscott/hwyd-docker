@@ -7,6 +7,8 @@ var init = function() {
   //   scheduledevent.execute();
   // });
   // console.log('scheduler initialized');
+
+  console.log('Schedule inactive. Executing scheduledevent once...')
   scheduledevent.execute();   // todo: uncomment above and remove this line
 }
 

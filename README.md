@@ -8,7 +8,7 @@
 
 `docker run -p 3000:3000 --rm=true kevinjscott/hwyd-docker`
 
-`docker exec -it kev /bin/sh`
+`docker exec -it kev /bin/bash`
 
 `docker rm $(docker ps -a -q); docker rmi $(docker images -q)`
 
