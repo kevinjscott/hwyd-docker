@@ -1,4 +1,4 @@
-exports.data = {
+module.exports = {
   currentIndex: 5,
   questions: [
     'Daily Question 0',

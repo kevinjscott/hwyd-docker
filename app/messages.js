@@ -1,20 +1,35 @@
 var _ = require('lodash');
 var moment = require('moment-timezone');
-var stockquestions = require('./data-stockquestions').data;
-var teachers = require('./data-teachers').data;
+var teachers = require('./data-teachers');
+var stockquestions = require('./data-stockquestions');
 
-exports.getCustomQuestions = function(teacher, count) {
+exports.getCustomQuestions = function(kidOrTeacher, count) {
   count = count || 1;
   var result = [];
   var t = moment().tz('America/New_York');
   var customitem = {};
+  var teacher, kid;
+
+  if (kidOrTeacher.customitems) {
+    // it's a teacher
+    teacher = kidOrTeacher;
+    kid = {};
+  } else {
+    // it's a kid
+    kid = kidOrTeacher;
+    teacher = _.find(teachers, ['id', kid.teacherid]);
+  }
 
   for (j = 0; j < count; j++) {
     checkDate = moment(t).tz('America/New_York').add(j, 'days').format('l');
+    customitem = {};
     if (teacher) {
-      customitem = _.find(teacher.customitems, ['date', checkDate]);
+      customitem = _.find(teacher.customitems, ['date', checkDate]) || {};
     }
-    result.push(customitem ? customitem : {});
+    customitem.kid = kid.name;
+    customitem.date = checkDate;
+    customitem.message = customitem.message || '';
+    result.push(customitem);
   }
 
   return result;
@@ -32,6 +47,13 @@ exports.getStockQuestions = function(count) {
   }
 
   return result;
+}
+
+exports.getQuestions = function(count) {
+  count = count || 1;
+  var result = [];
+  var stock = this.getStockQuestions(count);
+  return ("howdy");
 }
 
 exports.toCalendarDays = function() {

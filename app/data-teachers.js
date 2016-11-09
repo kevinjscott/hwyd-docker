@@ -1,4 +1,4 @@
-exports.data = [
+module.exports = [
   {
     id: 1,
     email: 'teacher1@example.com',
@@ -8,7 +8,7 @@ exports.data = [
     schoolid: 1,
     customitems: [
       {
-        date: '11/8/2016',
+        date: '11/9/2016',
         message: 'Custom Question 11'
       },
       {
@@ -51,7 +51,7 @@ exports.data = [
     schoolid: 2,
     customitems: [
       {
-        date: '11/8/2016',
+        date: '11/10/2016',
         message: 'Custom Question 44'
       },
       {

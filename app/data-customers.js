@@ -1,5 +1,5 @@
 var messages = require('./messages');
-exports.data = [
+module.exports = [
   {
     email: 'user1@example.com',
     firstname: 'Firstname1',

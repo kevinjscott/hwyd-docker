@@ -1,6 +1,6 @@
 var moment = require('moment-timezone');
 var _ = require('lodash');
-
+var teachers = require('./data-teachers');
 var send = require('./send');
 var messages = require('./messages');
 
@@ -16,7 +16,7 @@ var execute = function() {
   // todo: set customers to work with actual time and dynamically pick up the right users
 
   _.forEach(matchingcustomers, function(customer) {
-// todo: uncomment all this below
+// todo: re-enable this section
     // var msg = messages.getAndMarkSent(customer);
     // switch(customer.delivery.method) {
     //   case 'slack':
@@ -25,6 +25,7 @@ var execute = function() {
     //   default:
     //     console.log('delivery method not found for user ' + JSON.stringify(customer));
     // }
+    // todo: bump the daily index
   });
 
   // todo: save updated customers object back into the DB
