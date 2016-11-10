@@ -12,6 +12,10 @@ module.exports = [
       {
         name: 'Child1',
         teacherid: 1
+      },
+      {
+        name: 'Child1.5',
+        teacherid: 4
       }
     ]
   }, {
