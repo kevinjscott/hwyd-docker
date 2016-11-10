@@ -7,6 +7,7 @@ var init = function() {
     console.log('scheduler fired - executing scheduled event');
     scheduledevent.execute();
     messages.advanceToNextDailyQuestion();  //todo: schedule this every midnight
+    messages.advanceToday(1); // todo: this is just for testing
   });
   console.log('scheduler initialized');
 

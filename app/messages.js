@@ -2,24 +2,28 @@ var _ = require('lodash');
 var moment = require('moment-timezone');  // todo: make a global for t or today
 var teachers = require('./data-teachers');
 var stockquestions = require('./data-stockquestions');
+var today = moment().tz('America/New_York');
+
+exports.advanceToday = function(n) {
+  today.add(n, 'days');
+}
 
 exports.toCalendarDays = function() {
   var questions = _.cloneDeep(stockquestions.questions);
   var index = stockquestions.currentIndex;
 
-  var t = moment().tz('America/New_York');
-  t = moment(t).add(-0, 'days');    // for testing
+  t = moment(today).add(-0, 'days');    // for testing
   var thedate = t;
 
-  // console.log((t).format('LLLL'));
-  daysPastMonday = ((_.toInteger((t).format('d')) + 1 ) % 7) - 2;
+  // console.log((today).format('LLLL'));
+  daysPastMonday = ((_.toInteger((today).format('d')) + 1 ) % 7) - 2;
   var offset = (index) % questions.length;
 
   questions = _.concat(questions.splice(offset), questions);
   startPad = 0;
 
   for (var i = 0; i < questions.length; i++) {
-    thedate = moment(t).add(i, 'days');
+    thedate = moment(today).add(i, 'days');
     d = _.toInteger(thedate.format('d'));
 
     if (d == 6 || d == 0) {
@@ -28,7 +32,7 @@ exports.toCalendarDays = function() {
   }
 
   questions = _.map(questions, function(question, i) {
-    var thedatestr = moment(t).add(i, 'days').format('l');
+    var thedatestr = moment(today).add(i, 'days').format('l');
     return {
       message: question,
       date: thedatestr
@@ -41,7 +45,6 @@ exports.toCalendarDays = function() {
 exports.getCustomQuestions = function(kidOrTeacher, count) {
   count = count || 1;
   var result = [];
-  var t = moment().tz('America/New_York');
   var customitem = {};
   var teacher, kid;
 
@@ -56,7 +59,7 @@ exports.getCustomQuestions = function(kidOrTeacher, count) {
   }
 
   for (j = 0; j < count; j++) {
-    checkDate = moment(t).tz('America/New_York').add(j, 'days').format('l');
+    checkDate = moment(today).tz('America/New_York').add(j, 'days').format('l');
     customitem = {};
     if (teacher) {
       customitem = _.find(teacher.customitems, ['date', checkDate]) || {};

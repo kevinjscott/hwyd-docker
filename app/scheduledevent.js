@@ -17,14 +17,17 @@ var execute = function() {
   _.forEach(matchingcustomers, function(customer) {
     var questionarr = messages.getQuestions(customer.kids);
     var msg = messages.format(questionarr[0]);
-    // todo: kids
 
-    switch(customer.delivery.method) {
-      case 'slack':
-        send.slack(msg, customer.delivery.address);
-        break;
-      default:
-        console.log('delivery method not found for user ' + JSON.stringify(customer));
+    if (questionarr.stockmessage) {
+      switch(customer.delivery.method) {
+        case 'slack':
+          send.slack(msg, customer.delivery.address);
+          break;
+        default:
+          console.log('delivery method not found for user ' + JSON.stringify(customer));
+      }
+    } else {
+      // don't sending anything
     }
   });
 
