@@ -18,7 +18,7 @@ var execute = function() {
     var questionarr = messages.getQuestions(customer.kids);
     var msg = messages.format(questionarr[0]);
 
-    if (questionarr.stockmessage) {
+    if (questionarr[0].stockmessage) {
       switch(customer.delivery.method) {
         case 'slack':
           send.slack(msg, customer.delivery.address);
