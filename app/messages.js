@@ -135,7 +135,7 @@ exports.getQuestions = function(kidsOrTeacher, numDays) {
 exports.format = function(o) {
   var result = '';
 
-  result += o.date + '\n';
+  result += moment(o.date, 'l').format('LLLL') + '\n';
   result += o.stockmessage;
 
   for (var i = 0; i < o.custommessages.length; i++) {

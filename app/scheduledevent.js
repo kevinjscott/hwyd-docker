@@ -26,8 +26,6 @@ var execute = function() {
         default:
           console.log('delivery method not found for user ' + JSON.stringify(customer));
       }
-    } else {
-      // don't sending anything
     }
   });
 

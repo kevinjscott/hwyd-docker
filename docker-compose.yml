@@ -15,3 +15,11 @@ services:
       - 3000:3000
     volumes:
       - .:/app
+
+#  phpfpm:
+#    image: 'bitnami/php-fpm:latest'
+#    ports:
+#      - '9000:9000'
+#    volumes:
+#      - .:/app
+

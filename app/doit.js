@@ -5,8 +5,8 @@ var _ = require('lodash');
 var moment = require('moment-timezone');
 
 
-var count = 7;
-// console.log(JSON.stringify(messages.getStockQuestions(count), null, 2));
+var count = 3;
+console.log(JSON.stringify(messages.getStockQuestions(count), null, 2));
 // console.log(JSON.stringify(messages.getCustomQuestions(teachers[0], count), null, 2));
 // console.log(JSON.stringify(messages.getCustomQuestions(customers[0].kids[0], count), null, 2));
 
