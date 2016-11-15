@@ -10,13 +10,37 @@ var today = moment().tz('America/New_York');
 
 var StockQuestion = require("./models/stockquestion").StockQuestion;
 
+exports.init = function(callback){
+  var promise = StockQuestion.find().exec();
+
+  promise.then(function (sq) {
+    if (!sq.length) {
+      console.log('Reinitializing questions');
+      var sq2 = new StockQuestion(require('./data-stockquestions'));
+      stockquestions = sq2;
+      return sq2.save();
+    } else {
+      stockquestions = sq[0];
+    }
+  })
+
+  .then(function(){
+    if (callback) callback(null);
+  })
+
+  .catch(function(err){
+    console.log('error:', err);
+  });
+
+}
+
 exports.advanceToday = function(n) {
   today.add(n, 'days');
 }
 
 exports.toCalendarDays = function() {
-  var questions = _.cloneDeep(stockquestions[0].questions);
-  var index = stockquestions[0].currentIndex;
+  var questions = _.cloneDeep(stockquestions.questions);
+  var index = stockquestions.currentIndex;
 
   t = moment(today).add(-0, 'days');    // for testing
   var thedate = t;

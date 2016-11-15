@@ -43,12 +43,12 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-require('./app/init-db');
+require('./app/init-db').init(function() {
+  var scheduler = require('./app/scheduler');
+  scheduler.init();
 
-var scheduler = require('./app/scheduler');
-scheduler.init();
-
-require('./app/doit');
+  require('./app/doit');
+});
 
 module.exports = app;
 
