@@ -1,16 +1,22 @@
 var _ = require('lodash');
 var moment = require('moment-timezone');  // todo: make a global for t or today
+var Promise = require('bluebird');
+var mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
+
 var teachers = require('./data-teachers');
-var stockquestions = require('./data-stockquestions');
+var stockquestions;
 var today = moment().tz('America/New_York');
+
+var StockQuestion = require("./models/stockquestion").StockQuestion;
 
 exports.advanceToday = function(n) {
   today.add(n, 'days');
 }
 
 exports.toCalendarDays = function() {
-  var questions = _.cloneDeep(stockquestions.questions);
-  var index = stockquestions.currentIndex;
+  var questions = _.cloneDeep(stockquestions[0].questions);
+  var index = stockquestions[0].currentIndex;
 
   t = moment(today).add(-0, 'days');    // for testing
   var thedate = t;
@@ -38,7 +44,6 @@ exports.toCalendarDays = function() {
       date: thedatestr
     }
   })
-
   return questions;
 }
 

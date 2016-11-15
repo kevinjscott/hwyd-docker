@@ -10,5 +10,7 @@
 
 `docker exec -it kev /bin/bash`
 
+`docker exec -it b2 mongo my_app_development`
+
 `docker rm $(docker ps -a -q); docker rmi $(docker images -q)`
 

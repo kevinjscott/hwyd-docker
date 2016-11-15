@@ -3,6 +3,8 @@ version: '2'
 services:
   mongodb:
     image: bitnami/mongodb:latest
+    ports:
+      - 27017:27017
 
   myapp:
 #    tty: true # Enables debugging capabilities when attached to this container.
