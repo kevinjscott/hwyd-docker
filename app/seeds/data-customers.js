@@ -1,34 +1,34 @@
 module.exports = [
   {
-    email: 'user1@example.com',
-    firstname: 'Firstname1',
+    email: 'kevinjscott@gmail.com',
+    firstname: 'Kevin',
     delivery: {
-      time: '16:44',
+      time: '14:02',
       method: 'slack',
       address: '#customer1'
     },
     kids: [
       {
-        name: 'Child1',
-        teacherid: '100000000000000000000001'
+        name: 'Audrey',
+        teacherid: '1A0000000000000000000001'
       },
       {
-        name: 'Child1.5',
-        teacherid: '100000000000000000000004'
+        name: 'Lorraine',
+        teacherid: '1A0000000000000000000004'
       }
     ]
   }, {
     email: 'user2@example.com',
     firstname: 'Firstname2',
     delivery: {
-      time: '16:45',
+      time: '11:42',
       method: 'slack',
       address: '#customer2'
     },
     kids: [
       {
         name: 'Child2',
-        teacherid: '100000000000000000000002'
+        teacherid: '1A0000000000000000000002'
       }
     ]
   }, {
@@ -42,7 +42,7 @@ module.exports = [
     kids: [
       {
         name: 'Child3',
-        teacherid: '100000000000000000000003'
+        teacherid: '1A0000000000000000000003'
       }
     ]
   }, {
@@ -56,7 +56,7 @@ module.exports = [
     kids: [
       {
         name: 'Child4',
-        teacherid: '100000000000000000000004'
+        teacherid: '1A0000000000000000000004'
       }
     ]
   }

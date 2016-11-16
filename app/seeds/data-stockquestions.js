@@ -1,5 +1,5 @@
 module.exports = {
-  currentIndex: 7,
+  currentIndex: 0,
   questions: [
     'Daily Question 0',
     'Daily Question 1',

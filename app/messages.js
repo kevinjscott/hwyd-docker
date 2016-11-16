@@ -1,22 +1,22 @@
 var _ = require('lodash');
-var moment = require('moment-timezone');  // todo: make a global for t or today
+var moment = require('moment-timezone');
 var Promise = require('bluebird');
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 
-var teachers = require('./data-teachers');
+var teachers = require('./seeds/data-teachers');
 var stockquestions;
 var today = moment().tz('America/New_York');
 
 var StockQuestion = require("./models/stockquestion").StockQuestion;
+var Teacher = require("./models/teachers").Teacher;
 
 exports.init = function(callback){
-  var promise = StockQuestion.find().exec();
-
-  promise.then(function (sq) {
+  StockQuestion.find()
+  .then(function (sq) {
     if (!sq.length) {
       console.log('Reinitializing questions');
-      var sq2 = new StockQuestion(require('./data-stockquestions'));
+      var sq2 = new StockQuestion(require('./seeds/data-stockquestions'));
       stockquestions = sq2;
       return sq2.save();
     } else {
@@ -31,7 +31,18 @@ exports.init = function(callback){
   .catch(function(err){
     console.log('error:', err);
   });
+}
 
+exports.refreshFromDB = function () {
+  Teacher.find()
+  .then(function(docs) {
+    teachers = _.cloneDeep(docs);
+  })
+
+  StockQuestion.find()
+  .then(function (docs) {
+    stockquestions = docs[0];
+  })
 }
 
 exports.advanceToday = function(n) {
@@ -84,9 +95,8 @@ exports.getCustomQuestions = function(kidOrTeacher, count) {
   } else {
     // it's a kid
     kid = kidOrTeacher;
-    teacher = _.find(teachers, ['id', kid.teacherid]);
+    teacher = _.find(teachers, ['_id', kid.teacherid]); // todo: cast to string to compare ID?
   }
-
   for (j = 0; j < count; j++) {
     checkDate = moment(today).tz('America/New_York').add(j, 'days').format('l');
     customitem = {};
@@ -178,6 +188,7 @@ exports.format = function(o) {
 }
 
 exports.advanceToNextDailyQuestion = function() {
+  today = moment().tz('America/New_York');
   stockquestions.currentIndex++;
   stockquestions.currentIndex = stockquestions.currentIndex % stockquestions.questions.length;
 

@@ -16,3 +16,5 @@
 
 `sudo usermod -a -G docker $USER`
 
+`eb deploy --version hwyd`
+

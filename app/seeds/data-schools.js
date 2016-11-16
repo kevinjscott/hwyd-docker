@@ -1,6 +1,6 @@
 module.exports = [
   {
-    _id: '200000000000000000000001',
+    _id: '2A0000000000000000000001',
     poc: {
       email: 'admin1@example.com',
       slack: '#admin1',
@@ -13,7 +13,7 @@ module.exports = [
     }
   },
   {
-    _id: '200000000000000000000002',
+    _id: '2A0000000000000000000002',
     poc: {
       email: 'admin2@example.com',
       slack: '#admin2',

@@ -1,6 +1,9 @@
 var Slack = require('slack-node');
 
-function sendViaSlack(text, channel) {
+function slack(text, channel) {
+// console.log('attempting to slack: ' + text);
+// console.trace();
+  channel = channel || '#hwyd-test';
   slack = new Slack();
   slack.setWebhook('https://hooks.slack.com/services/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'); 
   slack.webhook({
@@ -17,4 +20,4 @@ function sendViaSlack(text, channel) {
   });
 }
 
-module.exports.slack = sendViaSlack;
+module.exports.slack = slack;

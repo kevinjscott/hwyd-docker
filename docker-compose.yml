@@ -1,10 +1,10 @@
 version: '2'
 
 services:
-  mongodb:
-    image: bitnami/mongodb:latest
-    ports:
-      - 27017:27017
+# mongodb:
+#   image: bitnami/mongodb:latest
+#   ports:
+#     - 27017:27017
 
   myapp:
 #    tty: true # Enables debugging capabilities when attached to this container.
@@ -13,8 +13,9 @@ services:
       - DATABASE_URL=mongodb://mongodb:27017/my_app_development
       - DBUSER
       - DBPW
-    depends_on:
-      - mongodb
+      - ENVIRONMENT
+    # depends_on:
+    #   - mongodb
     ports:
       - 3000:3000
     volumes:

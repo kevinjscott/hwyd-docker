@@ -1,35 +1,37 @@
 var moment = require('moment-timezone');
 var _ = require('lodash');
-var teachers = require('./data-teachers');
+var teachers = require('./seeds/data-teachers');
+var Customer = require('./models/customers').Customer;
 var send = require('./send');
-var messages = require('./messages');
-
-// todo: read users from an actual DB
-var sendmaster = require('./data-customers');
+// var messages = require('./messages');
+var Promise = require('bluebird');
+var messages = Promise.promisifyAll(require('./messages'));
 
 exports.sendMessagesForThisMinute = function() {
-  // var t = moment.tz('2014-06-01T20:44:40Z', 'America/New_York').format('H:m');
-  // var matchingcustomers = _.filter(sendmaster, ['delivery.time', t]);
-  var matchingcustomers = sendmaster; // todo: replace this with the real customer selection logic
+  var t = moment().tz('America/New_York').format('H:mm');
+  // var t = moment.tz('2014-06-01T19:00:40Z', 'America/New_York').format('H:mm'); // 16:33
 
-  // todo: set customers to work with actual time and dynamically pick up the right users
+  Customer.find({'delivery.time': t})
+  .then(function (matchingcustomers) {
+    console.log(t + ' Customers found: ' + JSON.stringify(matchingcustomers, null, 2));
+    if (matchingcustomers.length) {
+      _.forEach(matchingcustomers, function(customer) {
+        var questionarr = messages.getQuestions(customer.kids);
+        var msg = messages.format(questionarr[0]);
 
-  _.forEach(matchingcustomers, function(customer) {
-    var questionarr = messages.getQuestions(customer.kids);
-    var msg = messages.format(questionarr[0]);
-
-    if (questionarr[0].stockmessage) {
-      switch(customer.delivery.method) {
-        case 'slack':
-          send.slack(msg, customer.delivery.address);
-          break;
-        default:
-          console.log('delivery method not found for user ' + JSON.stringify(customer));
-      }
+        if (questionarr[0].stockmessage) {
+          switch(customer.delivery.method) {
+            case 'slack':
+              send.slack(msg, customer.delivery.address);
+              break;
+            default:
+              console.log('delivery method not found for user ' + JSON.stringify(customer));
+          }
+        }
+      });
     }
+    messages.refreshFromDB();
   });
-
-  // todo: save updated customers object back into the DB
 }
 
 exports.advanceToNextDailyQuestion = function () {
@@ -38,5 +40,5 @@ exports.advanceToNextDailyQuestion = function () {
 }
 
 exports.pingSlack = function (msg) {
-  send.slack(msg, '#hwyd-test');
+  send.slack(msg);
 }

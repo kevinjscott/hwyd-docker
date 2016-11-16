@@ -1,11 +1,15 @@
-var seedTeacherData = require('./data-teachers');
+var send = require('./send');
+
+var seedTeacherData = require('./seeds/data-teachers');
 var Teacher = require('./models/teachers').Teacher;
 
-var seedCustomerData = require('./data-customers');
+var seedCustomerData = require('./seeds/data-customers');
 var Customer = require('./models/customers').Customer;
 
-var seedSchoolData = require('./data-schools');
+var seedSchoolData = require('./seeds/data-schools');
 var School = require('./models/schools').School;
+
+var messages = require('./messages');
 
 var Promise = require('bluebird');
 var mongoose = Promise.promisifyAll(require("mongoose"));
@@ -13,16 +17,18 @@ var db = mongoose.connection;
 var _ = require('lodash');
 
 exports.init = function(callback){
-  console.log('mongodb://' + process.env.DBUSER + ':' + process.env.DBPW + '@ds155097.mlab.com:55097/hwyd');
-  mongoose.connect('mongodb://' + process.env.DBUSER + ':' + process.env.DBPW + '@ds155097.mlab.com:55097/hwyd');
-  // mongoose.connect(process.env.DATABASE_URL);
+  var conn = 'mongodb://' + process.env.DBUSER + ':' + process.env.DBPW + '@ds155097.mlab.com:55097/hwyd';
+  send.slack('Connecting to: ' + conn + '\n' +
+             'Host environment: ' + process.env.ENVIRONMENT + '\n');
+  mongoose.connect(conn);
   db.on('error', console.error.bind(console, 'connection error:'));
   db.once('open', function() {
     Promise.promisifyAll(require('./messages')).initAsync()
-    .then(seedSchools(true))
-    .then(seedCustomers(true))
-    .then(seedTeachers(true))  // todo: enable/disable these
+    // .then(seedSchools(true))
+    // .then(seedCustomers(true))
+    // .then(seedTeachers(true))  // todo: enable/disable these
     .then(function(){
+      messages.refreshFromDB();
       if (callback) callback(null);
     });
   })

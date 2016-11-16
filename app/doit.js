@@ -20,16 +20,27 @@ var count = 5;
 // .then(function (item) {
 //   if (item) {
 //     // console.log('found teacher: ' + item);
-//     console.log(JSON.stringify(messages.getCustomQuestions(item, count), null, 2));
+//     console.log('found teacher: ' + item);
+//     console.log('Teachers custom questions: ' + JSON.stringify(messages.getCustomQuestions(item, count), null, 2));
 //   } else {
 //     console.log('teacher not found');
 //   }
 // })
 
-    // console.log(JSON.stringify(messages.getStockQuestions(count), null, 2));
-    // console.log(JSON.stringify(messages.toCalendarDays(), null, 2));
+// Customer.findOne({ 'delivery.address': '#customer1'})
+// .then(function (item) {
+//   if (item) {
+//     // console.log('found customer: ' + item);
+//     console.log('Customers custom questions: ' + JSON.stringify(messages.getCustomQuestions(item.kids[0], count), null, 2));
+//   } else {
+//     console.log('customer not found');
+//   }
+// })
 
-    // console.log(JSON.stringify(messages.getCustomQuestions(customers[0].kids[0], count), null, 2));
-    // messages.advanceToNextDailyQuestion();
-    // console.log(JSON.stringify(messages.getQuestions(customers[0].kids), null, 2));
+// console.log(JSON.stringify(messages.getStockQuestions(count), null, 2));
+// console.log(JSON.stringify(messages.toCalendarDays(), null, 2));
+
+// console.log(JSON.stringify(messages.getCustomQuestions(customers[0].kids[0], count), null, 2));
+// messages.advanceToNextDailyQuestion();
+// console.log(JSON.stringify(messages.getQuestions(customers[0].kids), null, 2));
 
