@@ -37,3 +37,6 @@ exports.advanceToNextDailyQuestion = function () {
   send.slack('messages.advanceToNextDailyQuestion()', '#hwyd-test');
 }
 
+exports.pingSlack = function (msg) {
+  send.slack(msg, '#hwyd-test');
+}
