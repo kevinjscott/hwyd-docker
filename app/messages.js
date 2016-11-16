@@ -180,6 +180,11 @@ exports.format = function(o) {
 exports.advanceToNextDailyQuestion = function() {
   stockquestions.currentIndex++;
   stockquestions.currentIndex = stockquestions.currentIndex % stockquestions.questions.length;
+
+  StockQuestion.update( {  }, { $set: { currentIndex: stockquestions.currentIndex }}, function() {
+    console.log('updated currentIndex in DB');
+  });
+
 }
 
 

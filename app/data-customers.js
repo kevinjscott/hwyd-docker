@@ -1,4 +1,3 @@
-var messages = require('./messages');
 module.exports = [
   {
     email: 'user1@example.com',
@@ -6,16 +5,16 @@ module.exports = [
     delivery: {
       time: '16:44',
       method: 'slack',
-      address: '#hwyd1'
+      address: '#customer1'
     },
     kids: [
       {
         name: 'Child1',
-        teacherid: 1
+        teacherid: '100000000000000000000001'
       },
       {
         name: 'Child1.5',
-        teacherid: 4
+        teacherid: '100000000000000000000004'
       }
     ]
   }, {
@@ -24,12 +23,12 @@ module.exports = [
     delivery: {
       time: '16:45',
       method: 'slack',
-      address: '#hwyd2'
+      address: '#customer2'
     },
     kids: [
       {
         name: 'Child2',
-        teacherid: 2
+        teacherid: '100000000000000000000002'
       }
     ]
   }, {
@@ -38,12 +37,12 @@ module.exports = [
     delivery: {
       time: '16:44',
       method: 'slack',
-      address: '#hwyd3'
+      address: '#customer3'
     },
     kids: [
       {
         name: 'Child3',
-        teacherid: 3
+        teacherid: '100000000000000000000003'
       }
     ]
   }, {
@@ -52,12 +51,12 @@ module.exports = [
     delivery: {
       time: '16:44',
       method: 'slack',
-      address: '#hwyd4'
+      address: '#customer4'
     },
     kids: [
       {
         name: 'Child4',
-        teacherid: 4
+        teacherid: '100000000000000000000004'
       }
     ]
   }

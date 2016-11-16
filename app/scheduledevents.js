@@ -7,7 +7,7 @@ var messages = require('./messages');
 // todo: read users from an actual DB
 var sendmaster = require('./data-customers');
 
-var execute = function() {
+exports.sendMessagesForThisMinute = function() {
   // var t = moment.tz('2014-06-01T20:44:40Z', 'America/New_York').format('H:m');
   // var matchingcustomers = _.filter(sendmaster, ['delivery.time', t]);
   var matchingcustomers = sendmaster; // todo: replace this with the real customer selection logic
@@ -32,7 +32,8 @@ var execute = function() {
   // todo: save updated customers object back into the DB
 }
 
-module.exports.execute = execute;
-
-
+exports.advanceToNextDailyQuestion = function () {
+  messages.advanceToNextDailyQuestion();
+  send.slack('messages.advanceToNextDailyQuestion()', '#hwyd-test');
+}
 

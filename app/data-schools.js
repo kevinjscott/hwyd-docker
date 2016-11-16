@@ -1,10 +1,10 @@
-exports.data = [
+module.exports = [
   {
-    id: 1,
+    _id: '200000000000000000000001',
     poc: {
       email: 'admin1@example.com',
-      slack: 'admin1',
-    }
+      slack: '#admin1',
+    },
     name: 'School1',
     hash: 'school1hash',
     salt: 'somesalt',
@@ -13,11 +13,11 @@ exports.data = [
     }
   },
   {
-    id: 2,
+    _id: '200000000000000000000002',
     poc: {
       email: 'admin2@example.com',
-      slack: 'admin2',
-    }
+      slack: '#admin2',
+    },
     name: 'School2',
     hash: 'school2hash',
     salt: 'somesalt',
