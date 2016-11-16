@@ -13,7 +13,9 @@ var db = mongoose.connection;
 var _ = require('lodash');
 
 exports.init = function(callback){
-  mongoose.connect(process.env.DATABASE_URL);
+  console.log('mongodb://' + process.env.DBUSER + ':' + process.env.DBPW + '@ds155097.mlab.com:55097/hwyd');
+  mongoose.connect('mongodb://' + process.env.DBUSER + ':' + process.env.DBPW + '@ds155097.mlab.com:55097/hwyd');
+  // mongoose.connect(process.env.DATABASE_URL);
   db.on('error', console.error.bind(console, 'connection error:'));
   db.once('open', function() {
     Promise.promisifyAll(require('./messages')).initAsync()
