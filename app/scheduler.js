@@ -6,7 +6,7 @@ var init = function() {
     scheduledevents.sendMessagesForThisMinute();
   });
 
-  schedule.scheduleJob('0 0 * * *', function(){
+  schedule.scheduleJob('0 5 * * *', function(){
     console.log('midnight event - bump daily index');
     scheduledevents.advanceToNextDailyQuestion();
   });
